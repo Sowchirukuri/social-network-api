@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./routes');
+const userRoutes = require('./routes/api/user-routes');
+const thoughtRoutes = require('./routes/api/thought-routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,7 +23,8 @@ mongoose.connection.on('connected', () => {
 });
 
 // Use API routes
-app.use('/api', routes);
+app.use('/api/users', userRoutes); 
+app.use('/api/thoughts', thoughtRoutes); 
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
